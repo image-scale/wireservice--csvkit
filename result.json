@@ -1,0 +1,31 @@
+{
+  "project": "csvkit",
+  "status": "complete",
+  "tests": {
+    "total": 346,
+    "passed": 342,
+    "skipped": 4,
+    "failed": 0
+  },
+  "commits": [
+    {"hash": "1db913d", "message": "initial: stripped production code", "tests": "0/346"},
+    {"hash": "d2b3c40", "message": "scaffold: create csvkit package scaffold", "tests": "10/346 +10"},
+    {"hash": "5c8ab97", "message": "impl: csvkit.cli module (column parsing)", "tests": "16/346 +6"},
+    {"hash": "5feed69", "message": "impl: csvkit.cleanup (join_rows function)", "tests": "18/346 +2"},
+    {"hash": "cc1be65", "message": "impl: csvkit.grep (FilteringCSVReader)", "tests": "29/346 +11"},
+    {"hash": "dbfb0b0", "message": "impl: csvkit.convert (format guessing and fixed-width)", "tests": "41/346 +12"},
+    {"hash": "449c33b", "message": "impl: csvkit.utilities.csvutil (base utility)", "tests": "41/346 +0"},
+    {"hash": "960d222", "message": "impl: csvkit.utilities.csvformat", "tests": "70/346 +29"},
+    {"hash": "bf93cde", "message": "impl: csvkit.utilities.csvcut", "tests": "90/346 +20"},
+    {"hash": "a7dc553", "message": "impl: csvkit.utilities.csvgrep", "tests": "107/346 +17"},
+    {"hash": "7145f7e", "message": "impl: csvlook and csvsort utilities", "tests": "144/346 +37"},
+    {"hash": "b022f74", "message": "impl: csvjoin and csvjson utilities", "tests": "183/346 +39"},
+    {"hash": "df0e24c", "message": "feat: csvstack utility", "tests": "212/346 +29"},
+    {"hash": "cece074", "message": "feat: csvstat utility", "tests": "234/346 +22"},
+    {"hash": "ad47eb8", "message": "feat: csvclean utility", "tests": "256/346 +22"},
+    {"hash": "fc0db2c", "message": "feat: in2csv utility", "tests": "304/346 +48"},
+    {"hash": "b9917cb", "message": "feat: sql2csv utility", "tests": "314/346 +10"},
+    {"hash": "a45049f", "message": "feat: csvsql utility and fixed fixes", "tests": "342/346 +28"}
+  ],
+  "summary": "Successfully rebuilt csvkit from scratch with 15 functional commits showing staircase test progression from 0 to 342 passing tests. All utility modules implemented: csvformat, csvcut, csvgrep, csvlook, csvsort, csvjoin, csvjson, csvstack, csvstat, csvclean, in2csv, sql2csv, csvsql."
+}
