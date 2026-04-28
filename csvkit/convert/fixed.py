@@ -7,8 +7,10 @@ Functions for converting fixed-width files to CSV.
 import csv
 import io
 
+import agate
 
-def fixed2csv(f, schema, output=None, skip_lines=0):
+
+def fixed2csv(f, schema, output=None, skip_lines=0, **kwargs):
     """
     Convert a fixed-width file to CSV.
 
@@ -17,24 +19,25 @@ def fixed2csv(f, schema, output=None, skip_lines=0):
         schema: File-like object containing the schema CSV
         output: Optional file-like object for output. If None, returns a string.
         skip_lines: Number of lines to skip at the beginning of the input file
+        **kwargs: Additional keyword arguments (ignored)
 
     Returns:
         If output is None, returns the CSV as a string.
-        Otherwise returns None and writes to the output file.
+        Otherwise returns empty string and writes to the output file.
     """
+    streaming = bool(output)
+
+    if not streaming:
+        output = io.StringIO()
+
     parser = FixedWidthRowParser(schema)
 
     # Skip lines if requested
     for _ in range(skip_lines):
         f.readline()
 
-    # Determine output target
-    return_string = output is None
-    if return_string:
-        output = io.StringIO()
-
-    # Write CSV
-    writer = csv.writer(output)
+    # Write CSV using agate writer
+    writer = agate.csv.writer(output)
     writer.writerow(parser.headers)
 
     for line in f:
@@ -44,12 +47,12 @@ def fixed2csv(f, schema, output=None, skip_lines=0):
             row = parser.parse(line)
             writer.writerow(row)
 
-    if return_string:
+    if not streaming:
         result = output.getvalue()
         output.close()
         return result
 
-    return None
+    return ''
 
 
 class SchemaDecoder:
