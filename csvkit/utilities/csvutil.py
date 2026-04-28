@@ -5,6 +5,7 @@ Base class for all csvkit utilities.
 """
 
 import argparse
+import ast
 import bz2
 import csv
 import datetime
@@ -31,6 +32,21 @@ except ImportError:
     zstandard = None
 
 QUOTING_CHOICES = sorted(getattr(csv, name) for name in dir(csv) if name.startswith('QUOTE_'))
+
+
+def parse_list(pairs):
+    """
+    Parse a list of key-value pairs into a dictionary.
+    Values are evaluated using ast.literal_eval when possible.
+    """
+    options = {}
+    for key, value in pairs:
+        try:
+            value = ast.literal_eval(value)
+        except ValueError:
+            pass
+        options[key] = value
+    return options
 
 
 class LazyFile:
