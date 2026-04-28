@@ -1,4 +1,2 @@
 csvkit
-docs
 examples
-man
